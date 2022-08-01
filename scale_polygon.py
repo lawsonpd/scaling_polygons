@@ -15,16 +15,6 @@ gen_coords = lambda xlim, ylim: (random.randint(-xlim, xlim), random.randint(-yl
 def euc_dist(p1, p2):
     return math.sqrt((p2[1] - p1[1]) ** 2 + (p2[0] - p1[0]) ** 2)
 
-# def scale_poly(coords, scale_factor):
-#     new_coords = []
-#     for p1, p2 in itertools.combinations(coords, 2):
-#         dist = euc_dist(p1, p2)
-#         dist_to_move_current_point = (scale_factor * dist_to_next_point / 2) - \
-#                                     (dist_to_next_point / 2)
-
-# def scale_side_lengths(verts, scale_factor):
-#     return [euc_dist(p1, p2) * scale_factor for p1, p2 in itertools.combinations(verts, 2)]
-
 def scale_vector(vector, scale_factor):
     x, y = vector
     return scale_factor * x, scale_factor * y
@@ -37,7 +27,7 @@ def polygon_perimeter(coords):
 
 if len(sys.argv) != 2:
     raise ValueError("Please provide only the scaling factor (int) argument")
-scaling_factor = int(sys.argv[1])
+scaling_factor = float(sys.argv[1])
 pgon = [gen_coords(xlim, ylim) for _ in range(num_coords())]
 print(f'Initial coordinates: {pgon}\n')
 pgon_scaled = scale_polygon(pgon, scaling_factor)
